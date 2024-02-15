@@ -1,9 +1,12 @@
 import "./App.css"
+import ReactHookFormPage from "./pages/ReactHookFormPage"
+import SimpleFormPage from "./pages/SimpleFormPage"
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <SimpleFormPage />
+      <ReactHookFormPage />
     </>
   )
 }
