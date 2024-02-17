@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import axios from "axios"
 
 type ListProps = {
   url: string
@@ -8,13 +9,15 @@ type ListProps = {
 const List = ({ url, filterBy = "prague" }: ListProps) => {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState([])
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true)
-      const response = await fetch(url)
-      const responseData = await response.json()
-      setData(responseData)
+      axios
+        .get(url)
+        .then((res) => setData(res.data))
+        .catch((err) => setError(err.message))
       setLoading(false)
     }
 
