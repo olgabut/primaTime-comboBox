@@ -1,0 +1,1 @@
+export const URL_UNIVERSITIES = 'http://universities.hipolabs.com/search?country=Czech+Republic'
