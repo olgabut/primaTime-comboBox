@@ -14,14 +14,10 @@ export default function ReactHookFormPage() {
     },
   })
 
-  console.log("error", errors)
   const handleSubmitReactHookForm = (data: any) => {
     console.log("SUBMIT")
     console.log(data)
-    console.log("Submited react hook form")
   }
-
-  // console.log("Render react hook form")
 
   return (
     <form onSubmit={handleSubmit(handleSubmitReactHookForm)} id="reactHookForm">
@@ -58,7 +54,7 @@ export default function ReactHookFormPage() {
           label="Address"
           placeholder="Your address"
           disabled={false}
-          errors={errors}
+          error={errors.address}
           register={register}
           validationSchema={{
             required: true,

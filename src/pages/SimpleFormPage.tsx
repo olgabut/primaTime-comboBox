@@ -16,10 +16,8 @@ export default function SimpleFormPage() {
     console.log("SUBMIT")
     const data = { ...state }
     console.log(data)
-    console.log("Submited simple form")
   }
 
-  // console.log("Render simple form")
   return (
     <form onSubmit={handleSubmitSimpleForm} id="simpleForm">
       <h1>Simple form</h1>
@@ -52,8 +50,9 @@ export default function SimpleFormPage() {
           type="text"
           name="address"
           label="Address"
-          defaultValue="345"
+          value="345"
           placeholder="Your address"
+          error={{ message: "err" }}
         />
       </div>
 

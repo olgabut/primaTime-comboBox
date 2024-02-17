@@ -1,10 +1,9 @@
 import {
-  FieldErrors,
+  FieldError,
   RegisterOptions,
   UseFormRegisterReturn,
 } from "react-hook-form"
 import useInput from "../../hooks/useInput"
-import useError from "../../hooks/useError"
 import Message from "../Message/Message"
 import classes from "./Input.module.css"
 
@@ -12,13 +11,18 @@ type InputProps = {
   type: "text"
   name: string
   label: string
-  placeholder?: string
   disabled?: boolean
   register?: (name: string, options?: RegisterOptions) => UseFormRegisterReturn
-  errors?: FieldErrors
-  required?: boolean
-  defaultValue?: string
+  error?: FieldError | { message?: string }
+  value?: string
   validationSchema?: RegisterOptions
+
+  placeholder?: string
+  size?: number
+  maxlength?: number
+  pattern?: string
+  required?: boolean
+  autofocus?: boolean
 }
 
 const Input = ({
@@ -28,13 +32,12 @@ const Input = ({
   placeholder = "",
   disabled = false,
   register,
-  errors,
-  required,
-  defaultValue,
+  error,
+  value,
   validationSchema,
+  ...props
 }: InputProps) => {
-  const input = useInput(defaultValue)
-  const error = errors && errors[name] ? errors[name] : useError()
+  const input = useInput(value)
 
   const universalRegister =
     register ||
@@ -51,15 +54,17 @@ const Input = ({
           className={`${classes.input} ${error && classes.error}`}
           placeholder={placeholder}
           disabled={disabled}
+          {...props}
           {...universalRegister(name, validationSchema)}
         />
       </label>
       {error && (
-        <Message type={"error"}>{(error.message as string) || "Error"}</Message>
+        <Message type={"error"}>
+          {error.message || "The field is required"}
+        </Message>
       )}
     </div>
   )
 }
 
-// export default forwardRef(Input) todo
 export default Input
