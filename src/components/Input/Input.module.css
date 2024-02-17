@@ -1,0 +1,41 @@
+.container {
+  --lightGrey: #f6f7f8;
+  --normalGrey: #b4c3ce;
+  --darkGrey: #555555;
+  text-align: left;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: var(--darkGrey);
+  font-weight: bold;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  color: var(--darkGrey);
+  font-size: 1rem;
+  border: 2px solid var(--normalGrey);
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+/* .input:hover {
+  background-color: var(--lightGrey);
+} */
+
+.input:focus {
+  background-color: var(--lightGrey);
+  outline: none;
+}
+
+.input:disabled {
+  background-color: var(--normalGrey);
+}
+
+.error {
+  border: 2px solid red;
+}

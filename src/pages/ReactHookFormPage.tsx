@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"
+import Input from "../components/Input/Input"
 
 export default function ReactHookFormPage() {
   const {
@@ -9,18 +10,21 @@ export default function ReactHookFormPage() {
     defaultValues: {
       firstName: "Jone",
       lastName: "Ford",
+      address: "123",
     },
   })
 
+  console.log("error", errors)
   const handleSubmitReactHookForm = (data: any) => {
+    console.log("SUBMIT")
     console.log(data)
     console.log("Submited react hook form")
   }
 
-  console.log("Render react hook form")
+  // console.log("Render react hook form")
 
   return (
-    <form onSubmit={handleSubmit(handleSubmitReactHookForm)} id="simpleForm">
+    <form onSubmit={handleSubmit(handleSubmitReactHookForm)} id="reactHookForm">
       <h1>React hook form</h1>
       <div>
         <label htmlFor="firstName">First name</label>
@@ -45,6 +49,25 @@ export default function ReactHookFormPage() {
           placeholder="Your last Name"
         />
         <p>{errors.lastName?.message}</p>
+      </div>
+
+      <div>
+        <Input
+          type="text"
+          name="address"
+          label="Address"
+          placeholder="Your address"
+          disabled={false}
+          errors={errors}
+          register={register}
+          validationSchema={{
+            required: true,
+            minLength: {
+              value: 3,
+              message: "Please enter a minimum of 3 characters",
+            },
+          }}
+        />
       </div>
 
       <input type="submit" value="submit" />

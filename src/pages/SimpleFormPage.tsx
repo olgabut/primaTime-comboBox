@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
+import Input from "../components/Input/Input"
 
 export default function SimpleFormPage() {
   const [state, setState] = useState({
@@ -12,11 +13,13 @@ export default function SimpleFormPage() {
 
   const handleSubmitSimpleForm = (event: any) => {
     event.preventDefault()
+    console.log("SUBMIT")
     const data = { ...state }
     console.log(data)
     console.log("Submited simple form")
   }
-  console.log("Render simple form")
+
+  // console.log("Render simple form")
   return (
     <form onSubmit={handleSubmitSimpleForm} id="simpleForm">
       <h1>Simple form</h1>
@@ -41,6 +44,16 @@ export default function SimpleFormPage() {
           placeholder="Your last Name"
           value={state.lastName}
           onChange={handleInput}
+        />
+      </div>
+
+      <div>
+        <Input
+          type="text"
+          name="address"
+          label="Address"
+          defaultValue="345"
+          placeholder="Your address"
         />
       </div>
 

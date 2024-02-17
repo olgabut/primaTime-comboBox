@@ -1,0 +1,21 @@
+.message {
+  font-size: .8rem;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.info {
+  color: #555;
+}
+
+.warning {
+  color:hsl(15, 72%, 70%);
+  border: 1px solid  hsl(15, 72%, 70%, 0.3);
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  background-color: hsl(15, 72%, 70%, 0.3);
+}
