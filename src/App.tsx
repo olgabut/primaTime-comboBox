@@ -1,13 +1,12 @@
 import "./App.css"
-import List from "./components/List/List"
-import { URL_UNIVERSITIES } from "./constants"
+import { Universities } from "./components/Universities/Universities"
 import ReactHookFormPage from "./pages/ReactHookFormPage"
 import SimpleFormPage from "./pages/SimpleFormPage"
 
 function App() {
   return (
     <>
-      <List url={URL_UNIVERSITIES} />
+      <Universities />
       {/* <SimpleFormPage /> */}
       {/* <ReactHookFormPage /> */}
     </>
