@@ -3,6 +3,11 @@ export interface IUniversitie {
   country: "Czech Republic",
   domains: string[], 
   name: string,
-  ['state-province']: string | null
-  web_pages: string[]
+  ['state-province']: string | null,
+  web_pages: string[],
+}
+
+export interface IListData {
+  id: string,
+  name: string,
 }
