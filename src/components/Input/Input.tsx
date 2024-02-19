@@ -1,70 +1,58 @@
-import {
-  FieldError,
-  RegisterOptions,
-  UseFormRegisterReturn,
-} from "react-hook-form"
-import useInput from "../../hooks/useInput"
+import { forwardRef } from "react"
+import { ChangeHandler, FieldError } from "react-hook-form"
 import Message from "../Message/Message"
 import classes from "./Input.module.css"
 
-type InputProps = {
-  type: "text"
+interface InputProps {
+  type?: "text"
   name: string
-  label: string
+  label?: string
   disabled?: boolean
-  register?: (name: string, options?: RegisterOptions) => UseFormRegisterReturn
-  error?: FieldError | { message?: string }
+
   value?: string
-  validationSchema?: RegisterOptions
+
+  onChange: ChangeHandler
+  onBlur: ChangeHandler
+  setValue?: (value: string) => void
+
+  error?: FieldError | { message?: string }
 
   placeholder?: string
   size?: number
+  min?: string | number
+  max?: string | number
   maxlength?: number
+  minlength?: number
   pattern?: string
   required?: boolean
   autofocus?: boolean
 }
 
-const Input = ({
-  type = "text",
-  name,
-  label = "",
-  placeholder = "",
-  disabled = false,
-  register,
-  error,
-  value,
-  validationSchema,
-  ...props
-}: InputProps) => {
-  const input = useInput(value)
-
-  const universalRegister =
-    register ||
-    function (name: string): {} {
-      return { name, ...input }
-    }
-
-  return (
-    <div className={classes.container}>
-      <label className={classes.label}>
-        {label}
-        <input
-          type={type}
-          className={`${classes.input} ${error && classes.error}`}
-          placeholder={placeholder}
-          disabled={disabled}
-          {...props}
-          {...universalRegister(name, validationSchema)}
-        />
-      </label>
-      {error && (
-        <Message type={"error"}>
-          {error.message || "The field is required"}
-        </Message>
-      )}
-    </div>
-  )
-}
-
-export default Input
+export const Input = forwardRef(
+  ({ label, error, setValue, ...props }: InputProps, ref) => {
+    // useImperativeHandle(ref, () => {
+    //   return {
+    //     change: () => {
+    //       inputRef.current.focus()
+    //     },
+    //   }
+    // })
+    return (
+      <div className={classes.container}>
+        <label className={classes.label}>
+          {label}
+          <input
+            className={`${classes.input} ${error && classes.error}`}
+            {...props}
+            ref={ref}
+          />
+        </label>
+        {error && (
+          <Message type={"error"}>
+            {error.message || "The field is required"}
+          </Message>
+        )}
+      </div>
+    )
+  }
+)

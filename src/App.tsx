@@ -5,20 +5,12 @@ import ReactHookFormPage from "./pages/ReactHookFormPage"
 import SimpleFormPage from "./pages/SimpleFormPage"
 
 function App() {
-  const [universitieName, setUniversitieName] = useState("")
+  // const [universitieName, setUniversitieName] = useState("")
   return (
     <>
-      <button onClick={() => setUniversitieName("")}>name=''</button>
-      <button onClick={() => setUniversitieName("pr")}>name='pr'</button>
-      <button onClick={() => setUniversitieName("prague")}>
-        name='prague'
-      </button>
-      <button onClick={() => setUniversitieName("Czech Technical")}>
-        name="Czech Technical"
-      </button>
-      <Universities filterBy={universitieName} />
+      {/* <Universities filterBy={universitieName} /> */}
       {/* <SimpleFormPage /> */}
-      {/* <ReactHookFormPage /> */}
+      <ReactHookFormPage />
     </>
   )
 }

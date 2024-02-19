@@ -1,0 +1,18 @@
+.dropdown {
+  margin-top: 10px;
+  background: #fff;
+}
+
+.dropdownItem {
+  border: 1px solid #b4c3ce;
+  padding: 5px;
+  text-align: left;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdownItem:hover {
+  background-color: #b4c3ce;
+}

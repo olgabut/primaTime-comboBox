@@ -1,16 +1,21 @@
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
-import Input from "../components/Input/Input"
+import { ComboBox } from "../components/ComboBox/ComboBox"
+import { Input } from "../components/Input/Input"
 
 export default function ReactHookFormPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     defaultValues: {
       firstName: "Jone",
       lastName: "Ford",
-      address: "123",
+      // address: "123",
+      street: "",
+      home: "home2",
     },
   })
 
@@ -18,6 +23,9 @@ export default function ReactHookFormPage() {
     console.log("SUBMIT")
     console.log(data)
   }
+  useEffect(() => {
+    setValue("home", "222")
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(handleSubmitReactHookForm)} id="reactHookForm">
@@ -47,7 +55,7 @@ export default function ReactHookFormPage() {
         <p>{errors.lastName?.message}</p>
       </div>
 
-      <div>
+      {/* <div>
         <Input
           type="text"
           name="address"
@@ -63,6 +71,43 @@ export default function ReactHookFormPage() {
               message: "Please enter a minimum of 3 characters",
             },
           }}
+        />
+      </div> */}
+
+      <div>
+        <Input
+          type="text"
+          label="Home"
+          // name="home"
+          placeholder="Your home"
+          error={errors.home}
+          setValue={(value: string) => {
+            setValue("home", value)
+          }}
+          {...register("home", {
+            required: true,
+            minLength: {
+              value: 3,
+              message: "Please enter a minimum of 3 characters",
+            },
+          })}
+        />
+      </div>
+
+      <div>
+        <ComboBox
+          label="Street"
+          error={errors.street}
+          setValue={(value: string) => {
+            setValue("street", value)
+          }}
+          {...register("street", {
+            required: true,
+            minLength: {
+              value: 4,
+              message: "Please enter a minimum of 4 characters",
+            },
+          })}
         />
       </div>
 

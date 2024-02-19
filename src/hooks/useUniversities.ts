@@ -5,7 +5,7 @@ import { IListData } from "../models"
 
 
 
-export default function useUniversities(filterBy = "") {
+export function useUniversities(filterBy = "") {
   filterBy = filterBy.trim().toLowerCase()
   const {
     status,
@@ -15,11 +15,6 @@ export default function useUniversities(filterBy = "") {
     queryKey: ["universities", filterBy],
     queryFn: getUniversities,
     refetchOnWindowFocus: false,
-    // placeholderData: () => { data from cache
-    //   return queryClient
-    //     .getQueryData('blogPosts')
-    //     ?.find((d) => d.id === blogPostId);
-    // },
   })
 
   const dataForList = useMemo(() => {
