@@ -1,8 +1,9 @@
-import { FormEvent, forwardRef, useEffect, useState } from "react"
+import { FormEvent, forwardRef, useEffect, useRef, useState } from "react"
 import { ChangeHandler, FieldError } from "react-hook-form"
 import { CleanButton } from "../CleanButton/CleanButton"
 import { DropContainer } from "../DropContainer/DropContainer"
 import { Input } from "../Input/Input"
+import classes from "./ComboBox.module.css"
 
 interface ComboBoxProps {
   type?: "text"
@@ -70,7 +71,7 @@ export const ComboBox = forwardRef(
 
     return (
       <>
-        <div>
+        <div className={classes.inputContiner}>
           <Input
             {...props}
             onChange={inputChangeHandler}
