@@ -1,7 +1,7 @@
 .dropdown {
   margin-top: 10px;
   background: #fff;
-  height: 150px;
+  max-height: 150px;
   overflow: auto;
 }
 

@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { FormEvent, forwardRef, LegacyRef } from "react"
 import { ChangeHandler, FieldError } from "react-hook-form"
 import Message from "../Message/Message"
 import classes from "./Input.module.css"
@@ -13,6 +13,7 @@ interface InputProps {
 
   onChange: ChangeHandler
   onBlur: ChangeHandler
+  onFocus?: (event: FormEvent<HTMLInputElement>) => void
   setValue?: (value: string) => void
 
   error?: FieldError | { message?: string }
@@ -30,21 +31,15 @@ interface InputProps {
 
 export const Input = forwardRef(
   ({ label, error, setValue, ...props }: InputProps, ref) => {
-    // useImperativeHandle(ref, () => {
-    //   return {
-    //     change: () => {
-    //       inputRef.current.focus()
-    //     },
-    //   }
-    // })
     return (
       <div className={classes.container}>
         <label className={classes.label}>
           {label}
           <input
             className={`${classes.input} ${error && classes.error}`}
+            autoComplete="off"
             {...props}
-            ref={ref}
+            ref={ref as unknown as LegacyRef<HTMLInputElement>}
           />
         </label>
         {error && (
