@@ -1,4 +1,4 @@
-import { FormEvent, forwardRef, useEffect, useRef, useState } from "react"
+import { FormEvent, forwardRef, useEffect, useState } from "react"
 import { ChangeHandler, FieldError } from "react-hook-form"
 import { CleanButton } from "../CleanButton/CleanButton"
 import { DropContainer } from "../DropContainer/DropContainer"
@@ -33,6 +33,7 @@ export const ComboBox = forwardRef(
     const [filterBy, setFilterBy] = useState("")
     const [isOpen, setIsOpen] = useState(false)
     const [selection, setSelection] = useState("")
+    const [dropPosition, setDropPosition] = useState<"bottom" | "top">("bottom")
 
     useEffect(() => {
       if (selection) {
@@ -51,7 +52,11 @@ export const ComboBox = forwardRef(
       onChange(event)
     }
 
-    const inputFocusHandler = (): void => {
+    const inputFocusHandler = (event: FormEvent<HTMLInputElement>): void => {
+      const inputPosition = (event.target as Element).getBoundingClientRect()
+      if (window.innerHeight - inputPosition.bottom < 160)
+        setDropPosition("top")
+      else setDropPosition("bottom")
       setIsOpen(true)
     }
 
@@ -88,12 +93,13 @@ export const ComboBox = forwardRef(
               }}
             />
           )}
+          <DropContainer
+            filterBy={filterBy}
+            isOpen={isOpen}
+            position={dropPosition}
+            onSelect={selectHandler}
+          />
         </div>
-        <DropContainer
-          filterBy={filterBy}
-          isOpen={isOpen}
-          onSelect={selectHandler}
-        />
       </>
     )
   }

@@ -43,6 +43,7 @@ export const Input = forwardRef(
           {label}
           <input
             className={`${classes.input} ${error && classes.error}`}
+            autoComplete="off"
             {...props}
             ref={ref}
           />
