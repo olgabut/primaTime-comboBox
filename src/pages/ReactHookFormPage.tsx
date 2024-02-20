@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { ComboBox } from "../components/ComboBox/ComboBox"
 import { Input } from "../components/Input/Input"
@@ -25,6 +25,10 @@ export default function ReactHookFormPage() {
   }
   useEffect(() => {
     setValue("home", "222")
+  }, [])
+  const setStreet = useCallback((value: string) => {
+    console.log("input value", value)
+    setValue("street", value)
   }, [])
 
   return (
@@ -81,9 +85,6 @@ export default function ReactHookFormPage() {
           // name="home"
           placeholder="Your home"
           error={errors.home}
-          setValue={(value: string) => {
-            setValue("home", value)
-          }}
           {...register("home", {
             required: true,
             minLength: {
@@ -98,9 +99,7 @@ export default function ReactHookFormPage() {
         <ComboBox
           label="Street"
           error={errors.street}
-          setValue={(value: string) => {
-            setValue("street", value)
-          }}
+          setValue={setStreet}
           {...register("street", {
             required: true,
             minLength: {
@@ -110,6 +109,20 @@ export default function ReactHookFormPage() {
           })}
         />
       </div>
+      <button
+        onClick={() => {
+          setValue("street", "pr")
+        }}
+      >
+        set='pr'
+      </button>
+      <button
+        onClick={() => {
+          setValue("street", "prague")
+        }}
+      >
+        set='prague'
+      </button>
 
       <input type="submit" value="submit" />
     </form>

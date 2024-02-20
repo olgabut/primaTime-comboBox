@@ -1,0 +1,11 @@
+.dropContainer{
+
+}
+
+.open {}
+
+.close {
+  visibility: hidden
+}
+
+.loading{}

@@ -12,8 +12,8 @@ export function DropList({ data, onSelect }: DropListProps) {
     <div className={classes.dropdown}>
       {data.map((item) => (
         <div
-          className={classes.dropdownItem}
           key={item.id}
+          className={classes.dropdownItem}
           onClick={(event: MouseEvent<HTMLElement>) =>
             onSelect((event.target as HTMLElement).innerText)
           }
