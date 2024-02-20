@@ -1,0 +1,30 @@
+.cleanButton {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  /* position: relative; */
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  z-index: 1;
+  margin: 20px auto;
+  cursor: pointer;
+  
+  background: #555555;
+}
+.cleanButton:before {
+  content: '+';
+  color: #fff;
+  position: absolute;
+  z-index: 2;
+  transform: rotate(45deg);
+  font-size: 36px;
+  line-height: 1;
+  top: -5px;
+  left: 6px;
+}
+
+.cleanButton:hover:before {
+  transform: scale(1.2) rotate(45deg);
+  color: #fff;
+}

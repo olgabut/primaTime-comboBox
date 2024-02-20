@@ -3,6 +3,7 @@
   --normalGrey: #b4c3ce;
   --darkGrey: #555555;
   text-align: left;
+  margin-top: 5px;
 }
 
 .label {
@@ -28,7 +29,10 @@
 } */
 
 .input:focus {
-  background-color: var(--lightGrey);
+  box-shadow:
+    inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
   outline: none;
 }
 
@@ -39,7 +43,3 @@
 .input:invalid, .error {
   border: 2px solid red;
 }
-
-/* .error {
-  border: 2px solid red;
-} */
