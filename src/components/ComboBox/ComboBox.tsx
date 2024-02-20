@@ -49,7 +49,9 @@ export const ComboBox = forwardRef(
 
     const inputChangeHandler = (event: FormEvent<HTMLInputElement>): void => {
       setFilterBy((event.target as HTMLInputElement).value || "")
-      onChange(event)
+      if (onChange) {
+        onChange(event)
+      }
     }
 
     const inputFocusHandler = (event: FormEvent<HTMLInputElement>): void => {
@@ -64,7 +66,9 @@ export const ComboBox = forwardRef(
       //todo
       setTimeout(() => {
         setIsOpen(false)
-        onBlur(event)
+        if (onBlur) {
+          onBlur(event)
+        }
       }, 500)
       //
     }
@@ -79,8 +83,8 @@ export const ComboBox = forwardRef(
         <div className={classes.inputContiner}>
           <Input
             {...props}
-            onChange={inputChangeHandler}
-            onBlur={inputBlurHandler}
+            onChange={inputChangeHandler as ChangeHandler}
+            onBlur={inputBlurHandler as ChangeHandler}
             ref={ref}
             type="text"
             onFocus={inputFocusHandler}
