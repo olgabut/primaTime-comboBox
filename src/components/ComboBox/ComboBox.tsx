@@ -1,5 +1,6 @@
-import { FormEvent, forwardRef, useCallback, useEffect, useState } from "react"
+import { FormEvent, forwardRef, useEffect, useState } from "react"
 import { ChangeHandler, FieldError } from "react-hook-form"
+import { CleanButton } from "../CleanButton/CleanButton"
 import { DropContainer } from "../DropContainer/DropContainer"
 import { Input } from "../Input/Input"
 
@@ -69,14 +70,24 @@ export const ComboBox = forwardRef(
 
     return (
       <>
-        <Input
-          {...props}
-          onChange={inputChangeHandler}
-          onBlur={inputBlurHandler}
-          ref={ref}
-          type="text"
-          onFocus={inputFocusHandler}
-        />
+        <div>
+          <Input
+            {...props}
+            onChange={inputChangeHandler}
+            onBlur={inputBlurHandler}
+            ref={ref}
+            type="text"
+            onFocus={inputFocusHandler}
+          />
+          {selection && (
+            <CleanButton
+              onClean={() => {
+                props.setValue("")
+                setSelection("")
+              }}
+            />
+          )}
+        </div>
         <DropContainer
           filterBy={filterBy}
           isOpen={isOpen}
